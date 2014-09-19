@@ -21,19 +21,24 @@ NonEmptyString = Match.Where (x) ->
   x.length isnt 0
 
 Meteor.methods
-  createComment: (content) ->
+  createComment: (content, tempId) ->
     check content, NonEmptyString
-    if not @userId
-      throw new Meteor.Error(403, "You must be logged in")
-    commentId = Random.id()
+    check tempId, NonEmptyString
+    ownerId = if @userId? then @userId else tempId
     timeNow = Date.now()
-    Comments.insert
-      _id: commentId
-      owner: @userId
-      content: content
-      created_at: timeNow
-      updated_at: timeNow
-    commentId
+    lastComment = Comments.findOne {owner: ownerId}, {sort: {created_at: -1}}
+    # No comment when theinterval is smaller than 3 sec
+    if lastComment? and (timeNow - lastComment.created_at < 3000)
+      alert('You have added too many comments!')
+    else
+      commentId = Random.id()
+      Comments.insert
+        _id: commentId
+        owner: ownerId
+        content: content
+        created_at: timeNow
+        updated_at: timeNow
+      commentId
     
 
       

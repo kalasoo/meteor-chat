@@ -3,16 +3,16 @@ Meteor.subscribe 'comments'
 # Initiate the comment input content
 Meteor.startup () ->
   Session.set 'content', ''
+  Session.set 'tempId', Random.id()
 
 # Create a comment
 Template.commentInput.events
   'keyup textarea': (event, template) ->
     Session.set 'content', template.$('textarea').val()
   'click button': (event, template) ->
-    if Meteor.userId()?
-      Meteor.call 'createComment', Session.get('content')
-      template.$('textarea').val ''
-      Session.set 'content', ''
+    Meteor.call 'createComment', Session.get('content'), Session.get('tempId')
+    template.$('textarea').val ''
+    Session.set 'content', ''
 
 Template.commentInput.creatorName = () ->
   currentUser = Meteor.user()
@@ -32,7 +32,7 @@ Template.commentBox.mine = () ->
 
 Template.commentBox.creatorName = (id) ->
   owner = Meteor.users.findOne id
-  if owner? then displayName(owner) else 'Unkown'
+  if owner? then displayName(owner) else "#{id.slice(0, 2)}····#{id.slice(-5)}"
 
 Template.commentBox.showTime = (time) ->
   new Date(time).toLocaleString()
