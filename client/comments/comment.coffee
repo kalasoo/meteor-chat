@@ -42,17 +42,25 @@ Template.commentBox.events
     Comments.remove @_id
     false
   'keypress .content': (event, template) ->
+    $content = $ event.target
     if event.charCode is 13
-      $content = $ event.target
       content = $.trim $content.text()
       if content.length > 0
         Comments.update @_id,
           $set:
             content: content
             updated_at: Date.now()
+        , () =>
+          $content.html content
         $content
           .blur()
           .addClass 'animated fadeIn'
           .one 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () ->
             $content.removeClass 'animated fadeIn'
-
+      else
+        $content
+          .html @content
+          .addClass 'animated shake'
+          .one 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () ->
+            $content.removeClass 'animated shake'
+        event.preventDefault()

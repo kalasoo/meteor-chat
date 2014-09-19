@@ -36,5 +36,9 @@ $width: 600px;
         }
       }
     }
+    &.shake {
+      -webkit-animation-duration: .3s;
+              animation-duration: .3s;
+    }
   }
 }
