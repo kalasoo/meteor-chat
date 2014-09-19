@@ -10,7 +10,13 @@ Template.commentInput.events
   'keyup textarea': (event, template) ->
     Session.set 'content', template.$('textarea').val()
   'click button': (event, template) ->
-    Meteor.call 'createComment', Session.get('content'), Session.get('tempId')
+    userId = Meteor.userId()
+    ownerId = if userId? then userId else Session.get('tempId')
+    lastComment = Comments.findOne {owner: ownerId}, {sort: {created_at: -1}}
+    if lastComment? and (Date.now() - lastComment.created_at < 3000)
+      alert('You have added too many comments!')
+    else
+      Meteor.call 'createComment', Session.get('content'), ownerId
     template.$('textarea').val ''
     Session.set 'content', ''
 
