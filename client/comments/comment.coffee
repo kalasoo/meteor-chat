@@ -17,7 +17,6 @@ Template.commentInput.events
       alert('You have added too many comments!')
     else
       Meteor.call 'createComment', Session.get('content'), ownerId
-      console.log $('.comments')
       $('.comments').scrollTop 0
     template.$('textarea').val ''
     Session.set 'content', ''
@@ -31,7 +30,7 @@ Template.commentInput.creatorName = () ->
 
 # Show comments
 Template.commentBoxes.comments = () ->
-  Comments.find {}, {sort: {created_at: -1}}
+  Comments.find {}, {sort: {created_at: -1}, limit: 20}
 
 # Show a comment
 Template.commentBox.mine = () ->
