@@ -1,0 +1,53 @@
+<head>
+  <title>Meteor Comments</title>
+  <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1><span class="visible-lg-inline">Meteor</span> Comments</h1>
+      <p class="text-center">
+        {{> loginButtons}}
+      </p>
+    </div>
+
+    {{> commentInput}}
+
+    <h4>Comments:</h4>
+    {{> commentBoxes}}
+
+    <hr/>
+    <p class="text-muted text-center"><small>Developed by <a href="http://ming.today">Ming</a>.</small></p>
+
+  </div>
+</body>
+
+<template name="commentInput">
+  <section id="comment-input">
+    <p>Hi{{creatorName}}</p>
+    <p><textarea class="form-control"></textarea></p>
+    <p class="text-right">
+      <button class="btn btn-primary">Add a comment</button>
+    </p>
+  </section>
+</template>
+
+<template name="commentBoxes">
+  {{#each comments}}
+    {{> commentBox}}
+  {{/each}}
+</template>
+
+<template name="commentBox">
+  <div class="comment">
+    <p class="content {{mine}}" contenteditable="{{mine}}">{{content}}</p>
+    <div class="text-muted text-right">
+      <small class="owner text-muted {{mine}}">{{creatorName owner}}</small> ·
+      {{#if mine}}
+        <small><a href="/" class="remove">Remove</a></small> ·
+      {{/if}}
+      <small>{{showTime updated_at}}</small>
+    </div>
+  </div>
+</template>

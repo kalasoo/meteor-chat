@@ -1,0 +1,40 @@
+$width: 600px;
+
+.container {
+  max-width: 600px;
+}
+
+.comment {
+  padding: 10px;
+  margin-bottom: 10px;
+  .owner.true {
+    color: #428bca;
+  }
+  .content {
+    &.true {
+      line-height: 2em;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      border-bottom: 2px solid transparent;
+      &:after {
+        content: 'Press enter to save';
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        font-size: 0.85em;
+        color: #eaeaea;
+      }
+      &:hover{
+        border-bottom-color: #eaeaea;
+      }
+      &:focus {
+        cursor: text;
+        border-bottom-color: #ddd;
+        &:after {
+          color: #aaa;
+        }
+      }
+    }
+  }
+}
