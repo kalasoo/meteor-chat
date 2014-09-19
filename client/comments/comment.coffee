@@ -46,7 +46,6 @@ Template.commentBox.events
       $content = $ event.target
       content = $.trim $content.text()
       if content.length > 0
-        $content.html ''
         Comments.update @_id,
           $set:
             content: content
