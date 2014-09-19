@@ -1,16 +1,47 @@
 $width: 600px;
 
+html, body {
+  height: 100%;
+}
+
 .container {
+  position: relative;
   max-width: 600px;
+  height: 100%;
+}
+
+.comments {
+  position: absolute;
+  left: 10px; right: 10px;
+  top: 250px; bottom: 75px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #eaeaea;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+  }
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .comment {
-  padding: 10px;
+  padding: 10px 30px 10px 10px;
   margin-bottom: 10px;
   .owner.true {
     color: #428bca;
   }
   .content {
+    padding-right: 100px;
     &.true {
       line-height: 2em;
       position: relative;
