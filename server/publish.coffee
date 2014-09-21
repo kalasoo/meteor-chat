@@ -3,3 +3,6 @@ Meteor.publish 'users', () ->
 
 Meteor.publish 'comments', () ->
   Comments.find {}, {sort: {created_at: -1}, limit: 20}
+
+Meteor.publish 'allComments', () ->
+  Comments.find()

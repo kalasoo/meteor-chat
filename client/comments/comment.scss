@@ -4,6 +4,11 @@ $dark: #777;
 $normal: #ccc;
 $light: #aaa;
 
+#iron-router-progress {
+  background-color : $dark;
+  box-shadow       : 0 0 5px $dark;
+}
+
 html, body {
   height: 100%;
 }
@@ -46,7 +51,7 @@ textarea.form-control:focus {
 }
 
 @media (min-height: 600px) {
-  .comments {
+  .main {
     position: absolute;
     left: 10px; right: 10px;
     top: 250px; bottom: 75px;

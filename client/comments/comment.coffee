@@ -1,5 +1,3 @@
-Meteor.subscribe 'comments'
-
 # Initiate the comment input content
 Meteor.startup () ->
   Session.set 'content', ''
@@ -29,7 +27,7 @@ Template.commentInput.creatorName = () ->
     ''
 
 # Show comments
-Template.commentBoxes.comments = () ->
+Template.chatRoom.comments = () ->
   Comments.find {}, {sort: {created_at: -1}}
 
 # Show a comment

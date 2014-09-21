@@ -11,3 +11,6 @@ accounts-password
 accounts-ui
 accounts-github
 accounts-twitter
+iron:router
+mrt:iron-router-progress
+

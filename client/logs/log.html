@@ -1,0 +1,24 @@
+<template name="logs">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <h1>{{commentsCount}}</h1>
+      <p class="text-muted">Comments</p>
+    </div>
+    <div class="col-md-4">
+      <h1>{{usersCount}}</h1>
+      <p class="text-muted">Users</p>
+    </div>
+    <div class="col-md-4">
+      <h1>{{signedUpUsersCount}}</h1>
+      <p class="text-muted">Signed-up Users</p>
+    </div>
+  </div>
+</template>
+
+<template name="logsHeader">
+  <div class="page-header text-center">
+    <h3><a href="{{pathFor 'home'}}">Comments</a> - Logs</h3>
+    {{> loginButtons}}
+  </div>
+  {{> commentInput}}
+</template>
