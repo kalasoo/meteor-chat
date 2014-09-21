@@ -1,7 +1,71 @@
 $width: 600px;
+$devil: #333;
+$dark: #777;
+$normal: #ccc;
+$light: #aaa;
 
 html, body {
   height: 100%;
+}
+
+body {
+  background: url(bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.cloud {
+  color: $dark;
+  text-decoration: underline;
+  &:hover {
+    color: $devil;
+  }
+}
+
+a {
+  @extend .cloud;
+}
+
+textarea.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: $dark;
+}
+
+.btn {
+  color: #fff;
+  background-color: $normal;
+  border-color: $dark;
+  &:hover, &:focus, &:active:focus {
+    outline: none;
+    color: #fff;
+    background-color: $normal * 0.8;
+  }
+}
+
+@media (min-height: 600px) {
+  .comments {
+    position: absolute;
+    left: 10px; right: 10px;
+    top: 250px; bottom: 75px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $normal;
+    }
+  }
+
+  footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 .container {
@@ -10,36 +74,9 @@ html, body {
   height: 100%;
 }
 
-.comments {
-  position: absolute;
-  left: 10px; right: 10px;
-  top: 250px; bottom: 75px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    width: 4px;
-  }
-  &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px #eaeaea;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #ddd;
-  }
-}
-
-footer {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 .comment {
   padding: 10px 30px 10px 10px;
   margin-bottom: 10px;
-  .owner.true {
-    color: #428bca;
-  }
   .content {
     padding-right: 100px;
     &.true {
@@ -54,16 +91,16 @@ footer {
         right: 0px;
         bottom: 0px;
         font-size: 0.85em;
-        color: #eaeaea;
+        color: $normal;
       }
       &:hover{
-        border-bottom-color: #eaeaea;
+        border-bottom-color: $normal;
       }
       &:focus {
         cursor: text;
-        border-bottom-color: #ddd;
+        border-bottom-color: $light;
         &:after {
-          color: #aaa;
+          color: $dark;
         }
       }
     }
