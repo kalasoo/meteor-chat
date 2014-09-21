@@ -30,7 +30,7 @@ Template.commentInput.creatorName = () ->
 
 # Show comments
 Template.commentBoxes.comments = () ->
-  Comments.find {}, {sort: {created_at: -1}, limit: 20}
+  Comments.find {}, {sort: {created_at: -1}}
 
 # Show a comment
 Template.commentBox.mine = () ->
